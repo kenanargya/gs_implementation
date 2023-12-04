@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form - Bimbel Online</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .registration-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            /* Adjusted width */
+        }
+
+        .registration-container h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+            /* Adjusted margin */
+        }
+
+        .input-group input,
+        .input-group select {
+            width: calc(100% - 20px);
+            /* Adjust width to compensate for padding */
+            padding: 15px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            border-color: #4a90e2;
+            /* Highlight focus */
+        }
+
+        .input-group label {
+            position: absolute;
+            left: 10px;
+            top: 15px;
+            /* Adjusted top position */
+            padding: 0 5px;
+            background-color: white;
+            /* Background to cover the input border */
+            transition: all 0.3s ease;
+            pointer-events: none;
+            font-size: 14px;
+            /* Adjusted font size */
+        }
+
+        .input-group input:focus+label,
+        .input-group input:not(:placeholder-shown)+label,
+        .input-group select:focus+label,
+        .input-group select:not([value=""])+label {
+            top: -10px;
+            /* Adjusted top position */
+            font-size: 12px;
+            /* Adjusted font size */
+            color: #4a90e2;
+            /* Highlight color */
+        }
+
+        .register-button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            background-color: #4a90e2;
+        }
+
+        .register-button:hover {
+            background-color: #3a7bd5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="registration-container">
+        <form id="registration-form">
+            <h2>Daftar Bimbel Online</h2>
+
+            <div class="input-group">
+                <input type="text" name="fullname" id="fullname" required>
+                <label for="fullname">Nama Lengkap</label>
+            </div>
+
+            <div class="input-group">
+                <input type="email" name="email" id="email" required>
+                <label for="email">Email</label>
+            </div>
+
+            <div class="input-group">
+                <input type="tel" name="phone" id="phone" required>
+                <label for="phone">Nomor Telepon</label>
+            </div>
+
+            <div class="input-group">
+                <select name="class" id="class" required>
+                    <option value="" disabled selected>Pilih Kelas</option>
+                    <option value="matematika">Matematika</option>
+                    <option value="fisika">Fisika</option>
+                    <option value="kimia">Kimia</option>
+                </select>
+                <label for="class">Kelas</label>
+            </div>
+
+            <div class="input-group">
+                <input type="password" name="password" id="password" required>
+                <label for="password">Password</label>
+            </div>
+
+            <button type="submit" class="register-button">Daftar</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('registration-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            var formData = new FormData(e.target);
+            fetch('https://script.google.com/macros/s/AKfycbwqq-lB6F5g243Rwi2MBaU-tQXcRcoGLhNn6hDB-a4DGQbcwRgSYw-BMXmANwltG5Vw/exec', {
+                method: 'POST',
+                body: new URLSearchParams([...formData])
+            })
+                .then(response => response.text())
+                .then(text => {
+                    alert("Form telah berhasil disubmit."); // Tampilkan pemberitahuan berhasil
+                    console.log(text); // Opsi tambahan: tampilkan respons di console untuk debugging
+                })
+                .catch(error => {
+                    alert("Terjadi kesalahan saat submit form."); // Tampilkan pemberitahuan error
+                    console.error('Error:', error);
+                });
+        });
+
+    </script>
+</body>
+
+</html>
